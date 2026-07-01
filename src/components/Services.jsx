@@ -174,7 +174,7 @@ export default function Services() {
                   <div className="absolute inset-0 bg-blue-500/5 z-10 mix-blend-overlay"></div>
                   <img 
                     className="w-full h-full object-cover opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 scale-100 group-hover:scale-105" 
-                    src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800" 
+                    src="/projects/showcase_incubation.jpg" 
                     alt="Work Showcase" 
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>

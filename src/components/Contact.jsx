@@ -17,6 +17,7 @@ const Contact = () => {
   const [loaded, setLoaded] = useState(false);
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [currentFrameIdx, setCurrentFrameIdx] = useState(0);
+  const lastThresholdRef = useRef(0);
 
   const frameCount = 160;
   const imagesRef = useRef([]);
@@ -76,7 +77,13 @@ const Contact = () => {
         
         ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
       }
-      setCurrentFrameIdx(frameIdx);
+      
+      // Optimize state updates to only fire when crossing threshold 120
+      const threshold = frameIdx >= 120 ? 120 : 0;
+      if (lastThresholdRef.current !== threshold) {
+        lastThresholdRef.current = threshold;
+        setCurrentFrameIdx(threshold);
+      }
     };
 
     window.addEventListener("resize", resizeCanvas);

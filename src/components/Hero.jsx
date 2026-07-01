@@ -12,6 +12,7 @@ export default function Hero() {
   const [loadingProgress, setLoadingProgress] = useState(0);
   
   const [currentFrameIdx, setCurrentFrameIdx] = useState(0);
+  const lastThresholdRef = useRef(0);
   
   const textContainerRef = useRef(null);
   const roleWrapperRef = useRef(null);
@@ -19,7 +20,7 @@ export default function Hero() {
   const highlightWrapperRef = useRef(null);
 
   const frameCount = 240;
-  const currentFrame = (index) => `/images/ezgif-frame-${(index + 1).toString().padStart(3, '0')}.jpg`;
+  const currentFrame = (index) => `/images/frame_${(index + 1).toString().padStart(3, '0')}.jpg`;
   
   const imagesRef = useRef([]);
   // We use an object to track the frame so GSAP can animate the value smoothly
@@ -50,9 +51,6 @@ export default function Hero() {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    
-    canvas.width = 1920;
-    canvas.height = 1080;
 
     const render = () => {
         if (!canvasRef.current || !imagesRef.current.length) return;
@@ -69,11 +67,32 @@ export default function Hero() {
             ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
         }
 
-        // Update state only if threshold is crossed to minimize re-renders
-        setCurrentFrameIdx(frameIdx);
+        // Optimize React rendering: only trigger state update when crossing thresholds
+        const getThreshold = (idx) => {
+            if (idx >= 239) return 239;
+            if (idx >= 200) return 200;
+            if (idx >= 150) return 150;
+            if (idx >= 100) return 100;
+            if (idx >= 10) return 10;
+            return 0;
+        };
+        const threshold = getThreshold(frameIdx);
+        if (lastThresholdRef.current !== threshold) {
+            lastThresholdRef.current = threshold;
+            setCurrentFrameIdx(threshold);
+        }
     };
 
-    render(); // Draw initial 0th frame
+    const resizeCanvas = () => {
+        if (!canvas) return;
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = window.innerWidth * dpr;
+        canvas.height = window.innerHeight * dpr;
+        render();
+    };
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas(); // Draw initial 0th frame
 
     // --- 1. SYSTEM BOOT OPENING EXPERIENCE (Runs on Mount) ---
     const bootTl = gsap.timeline({ delay: 0.5 });
@@ -95,7 +114,7 @@ export default function Hero() {
 
     // Robotic Text Sequence
     if (textContainerRef.current) {
-        // LEESHARK chars glitch/stagger in
+        // SURYA chars glitch/stagger in
         bootTl.to('.title-char', { opacity: 1, x: 0, duration: 0.05, stagger: 0.05, ease: "none" }, 1.5);
         
         // Full Stack Developer
@@ -117,7 +136,7 @@ export default function Hero() {
             trigger: containerRef.current,
             start: "top top",
             end: "+=4000",
-            scrub: 0.5,
+            scrub: 1.5, // Butter smooth scroll with inertia
             pin: true,
             anticipatePin: 1
         }
@@ -146,11 +165,12 @@ export default function Hero() {
     );
 
     return () => {
+        window.removeEventListener("resize", resizeCanvas);
         ScrollTrigger.getAll().forEach(t => t.kill());
     };
   }, [loaded]);
 
-  const titleText = "LEESH ARK";
+  const titleText = "SURYA ";
 
   return (
     <div ref={containerRef} className="relative w-full h-screen bg-[#020202] overflow-hidden flex items-center justify-center font-sans tracking-wide">
@@ -252,16 +272,23 @@ export default function Hero() {
                             </motion.div>
                         )}
 
-                        {currentFrameIdx >= 240 && (
+                        {currentFrameIdx >= 239 && (
                             <motion.div 
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                                 className="pointer-events-auto"
                             >
-                                <div className="inline-flex items-center px-8 py-3 border border-gray-700 bg-black/50 hover:bg-black/80 hover:border-blue-500/50 transition-colors cursor-pointer rounded-sm backdrop-blur-md group">
+                                <a 
+                                    href="#portfolio"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+                                    }}
+                                    className="inline-flex items-center px-8 py-3 border border-gray-700 bg-black/50 hover:bg-black/80 hover:border-blue-500/50 transition-colors cursor-pointer rounded-sm backdrop-blur-md group"
+                                >
                                     <span className="text-gray-300 font-mono tracking-widest uppercase text-xs group-hover:text-white transition-colors">Explore Work</span>
-                                </div>
+                                </a>
                             </motion.div>
                         )}
                     </div>

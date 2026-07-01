@@ -16,8 +16,8 @@ const FrameScrollAnimation = ({ frameCount = 240 }) => {
 
   // 2. Smooth Easing (Spring) for the scroll progress
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
+    stiffness: 60,
+    damping: 25,
     restDelta: 0.001
   });
 
@@ -51,6 +51,13 @@ const FrameScrollAnimation = ({ frameCount = 240 }) => {
             setLoaded(true);
           }
         };
+        img.onerror = () => {
+          loadedCount++;
+          setLoadingProgress(Math.floor((loadedCount / frameCount) * 100));
+          if (loadedCount === frameCount) {
+            setLoaded(true);
+          }
+        };
         images.current.push(img);
       }
     };
@@ -65,7 +72,8 @@ const FrameScrollAnimation = ({ frameCount = 240 }) => {
     const ctx = canvas.getContext("2d");
 
     const render = () => {
-      const index = Math.round(frameIndex.get());
+      let index = Math.round(frameIndex.get());
+      index = Math.max(0, Math.min(frameCount - 1, index));
       const img = images.current[index];
 
       if (img && img.complete) {
@@ -93,8 +101,9 @@ const FrameScrollAnimation = ({ frameCount = 240 }) => {
     };
 
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
       render();
     };
 
