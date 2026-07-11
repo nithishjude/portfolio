@@ -3,35 +3,34 @@ import { FiAward, FiBookOpen, FiCode, FiDownload } from "react-icons/fi";
 import { 
   SiReact, 
   SiTailwindcss, 
-  SiMongodb, 
-  SiFastapi, 
   SiGit 
 } from "react-icons/si";
+import { FaNodeJs, FaAws } from "react-icons/fa";
 
 export default function About() {
   const Aboutdata = [
     {
       icon: <FiCode size={20} />,
       title: "Languages",
-      desc: "HTML, CSS, JS, React, FastAPI, MongoDB",
+      desc: "Java, Python, SQL, HTML, CSS",
     },
     {
       icon: <FiBookOpen size={20} />,
       title: "Education",
-      desc: "B.E Computer Science",
+      desc: "B.E Computer Science and Engineering",
     },
     {
       icon: <FiAward size={20} />,
-      title: "Projects",
-      desc: "Built 5+ modern web projects",
+      title: "Experience",
+      desc: "2 Internships in Full Stack Development",
     },
   ];
 
   const Tools = [
-    { icon: <SiReact size={24} />, title: "React js" },
-    { icon: <SiTailwindcss size={24} />, title: "Tailwind css" },
-    { icon: <SiMongodb size={24} />, title: "MongoDB" },
-    { icon: <SiFastapi size={24} />, title: "FastAPI" },
+    { icon: <SiReact size={24} />, title: "React.js" },
+    { icon: <FaNodeJs size={24} />, title: "Node.js" },
+    { icon: <SiTailwindcss size={24} />, title: "Tailwind CSS" },
+    { icon: <FaAws size={24} />, title: "AWS" },
     { icon: <SiGit size={24} />, title: "Git" },
   ];
 
@@ -47,7 +46,7 @@ export default function About() {
             <img 
                src="/images/frame_121.jpg" 
                alt="About Profile" 
-               className="w-full h-full object-cover opacity-50 grayscale" 
+               className="w-full h-full object-cover opacity-50 grayscale scale-105" 
             />
         </div>
 
@@ -70,9 +69,7 @@ export default function About() {
                 {/* Bio Paragraph */}
                 <div className="robotic-section">
                     <p className="text-gray-400 text-sm md:text-md lg:text-xl font-light leading-relaxed max-w-2xl">
-                        I am a passionate <span className="text-white font-medium">Full Stack Web Developer</span> specializing in the 
-                        modern web ecosystem. My expertise lies in crafting high-performance, 
-                        scalable applications with precision and clean architecture.
+                        I am a <span className="text-white font-medium">Full Stack Web Developer</span> experienced in building production-grade web applications with React, Node.js, and JavaScript, with additional depth in AI-integrated tools and decentralized systems.
                     </p>
                 </div>
 
@@ -109,7 +106,8 @@ export default function About() {
                 {/* CTA */}
                 <div className="pt-6">
                     <a 
-                        href="/resume.pdf" 
+                        href="/resume/Nithish_Jude_J_Resume.pdf" 
+                        download="Nithish_Jude_J_Resume.pdf"
                         className="inline-flex items-center space-x-6 px-12 py-4 bg-blue-600 text-white font-bold text-xs uppercase tracking-widest hover:bg-blue-700 transition-all duration-300 rounded-full shadow-lg shadow-blue-900/20"
                     >
                         <span>Download Resume</span>

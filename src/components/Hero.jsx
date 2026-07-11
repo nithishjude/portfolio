@@ -19,8 +19,8 @@ export default function Hero() {
   const subtitleWrapperRef = useRef(null);
   const highlightWrapperRef = useRef(null);
 
-  const frameCount = 240;
-  const currentFrame = (index) => `/images/frame_${(index + 1).toString().padStart(3, '0')}.jpg`;
+  const frameCount = 170;
+  const currentFrame = (index) => `/images/frame_${(index + 2).toString().padStart(3, '0')}.jpg`;
   
   const imagesRef = useRef([]);
   // We use an object to track the frame so GSAP can animate the value smoothly
@@ -54,14 +54,12 @@ export default function Hero() {
 
     const render = () => {
         if (!canvasRef.current || !imagesRef.current.length) return;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        // Clamp frame just in case
         let frameIdx = Math.round(seqRef.current.frame);
         if (frameIdx >= frameCount) frameIdx = frameCount - 1;
-        
         const img = imagesRef.current[frameIdx];
         if (img && img.complete && img.naturalHeight !== 0) {
-            const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const scale = Math.max(canvas.width / img.width, canvas.height / img.height) * 1.05;
             const x = (canvas.width - img.width * scale) / 2;
             const y = (canvas.height - img.height * scale) / 2;
             ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
@@ -69,10 +67,10 @@ export default function Hero() {
 
         // Optimize React rendering: only trigger state update when crossing thresholds
         const getThreshold = (idx) => {
-            if (idx >= 239) return 239;
-            if (idx >= 200) return 200;
-            if (idx >= 150) return 150;
-            if (idx >= 100) return 100;
+            if (idx >= 160) return 160;
+            if (idx >= 120) return 120;
+            if (idx >= 80) return 80;
+            if (idx >= 40) return 40;
             if (idx >= 10) return 10;
             return 0;
         };
@@ -170,7 +168,7 @@ export default function Hero() {
     };
   }, [loaded]);
 
-  const titleText = "SURYA ";
+  const titleText = "NITHISH JUDE J ";
 
   return (
     <div ref={containerRef} className="relative w-full h-screen bg-[#020202] overflow-hidden flex items-center justify-center font-sans tracking-wide">
@@ -193,24 +191,16 @@ export default function Hero() {
         {/* Center Subdued Blue Glow */}
         <div className="portfolio-ui center-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-blue-600/10 blur-[150px] rounded-full pointer-events-none opacity-0 mix-blend-screen z-[1]"></div>
 
-        {/* --- HUD ELEMENTS --- */}
-        <div className="portfolio-ui absolute top-28 left-8 md:top-32 md:left-12 z-[60] font-mono text-[10px] text-blue-400 tracking-widest flex flex-col space-y-1.5 pointer-events-none">
-            <span className="hud-element opacity-0">&gt; SYSTEM ONLINE</span>
-            <span className="hud-element opacity-0">&gt; INITIALIZING PORTFOLIO v2.0</span>
-            <span className="hud-element opacity-0">&gt; NEURAL LINK ESTABLISHED</span>
-        </div>
-        <div className="portfolio-ui absolute bottom-12 right-8 md:bottom-12 md:right-12 z-[60] font-mono text-[10px] text-gray-600 tracking-widest text-right flex flex-col space-y-1.5 pointer-events-none">
-            <span className="hud-element opacity-0">SECURE SYS_ID: REACT_GSAP</span>
-            <span className="hud-element opacity-0">COORD: 34.0522 N / 118.2437 W</span>
-        </div>
+
+
 
         {/* --- SOCIAL LINKS --- */}
         <div className="portfolio-ui absolute bottom-12 left-8 md:left-12 z-[60] flex flex-col space-y-5">
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="social-icon opacity-0 text-gray-500 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">
+            <a href="https://github.com/nithishjude" target="_blank" rel="noreferrer" className="social-icon opacity-0 text-gray-500 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">
                 {/* GitHub */}
                 <svg className="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="social-icon opacity-0 text-gray-500 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">
+            <a href="https://www.linkedin.com/in/nithishjudej/" target="_blank" rel="noreferrer" className="social-icon opacity-0 text-gray-500 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">
                 {/* LinkedIn */}
                 <svg className="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             </a>
@@ -229,7 +219,7 @@ export default function Hero() {
                     
                     {/* LEFT SIDE: Name and Role */}
                     <div className="w-full md:w-[35%] flex flex-col items-center md:items-start text-center md:text-left">
-                        {currentFrameIdx >= 100 && (
+                        {currentFrameIdx >= 40 && (
                             <motion.div 
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -242,7 +232,7 @@ export default function Hero() {
                             </motion.div>
                         )}
                         
-                        {currentFrameIdx >= 150 && (
+                        {currentFrameIdx >= 80 && (
                             <motion.div 
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -259,7 +249,7 @@ export default function Hero() {
 
                     {/* RIGHT SIDE: Description and Button */}
                     <div className="w-full md:w-[35%] flex flex-col items-center md:items-start text-center md:text-left mt-16 md:mt-0 md:pl-8">
-                        {currentFrameIdx >= 200 && (
+                        {currentFrameIdx >= 120 && (
                             <motion.div 
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -267,12 +257,12 @@ export default function Hero() {
                                 className="mb-8"
                             >
                                 <p className="text-gray-400 text-sm md:text-sm lg:text-base font-light tracking-wide leading-relaxed">
-                                    Crafting modern, scalable and high-performance web applications with precision engineering and seamless user experience.
+                                    Full-stack developer experienced in building production-grade web applications with React, Node.js, and JavaScript. Comfortable owning a feature end-to-end and shipping working products under tight deadlines.
                                 </p>
                             </motion.div>
                         )}
 
-                        {currentFrameIdx >= 239 && (
+                        {currentFrameIdx >= 160 && (
                             <motion.div 
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}

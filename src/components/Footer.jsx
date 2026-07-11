@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
-import { FiGithub, FiTwitter, FiLinkedin, FiInstagram, FiCpu, FiShield, FiActivity, FiArrowUpRight } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiMail, FiPhone, FiCpu, FiShield, FiActivity, FiArrowUpRight } from 'react-icons/fi';
 
 const Footer = () => {
   const [systemTime, setSystemTime] = useState('');
@@ -32,10 +32,10 @@ const Footer = () => {
   }, []);
 
   const socialLinks = [
-    { icon: <FiGithub />, label: 'GITHUB', url: '#', color: 'hover:text-red-500' },
-    { icon: <FiTwitter />, label: 'TWITTER', url: '#', color: 'hover:text-cyan-400' },
-    { icon: <FiLinkedin />, label: 'LINKEDIN', url: '#', color: 'hover:text-blue-500' },
-    { icon: <FiInstagram />, label: 'INSTAGRAM', url: '#', color: 'hover:text-violet-500' },
+    { icon: <FiGithub />, label: 'GITHUB', url: 'https://github.com/nithishjude', color: 'hover:text-red-500' },
+    { icon: <FiLinkedin />, label: 'LINKEDIN', url: 'https://www.linkedin.com/in/nithishjudej/', color: 'hover:text-blue-500' },
+    { icon: <FiMail />, label: 'EMAIL', url: 'mailto:nithishjudej@gmail.com', color: 'hover:text-cyan-400' },
+    { icon: <FiPhone />, label: 'PHONE', url: 'tel:+918248286041', color: 'hover:text-green-400' },
   ];
 
   return (
@@ -83,7 +83,7 @@ const Footer = () => {
                 <FiCpu className="text-cyan-500 text-xl group-hover:text-white transition-colors" />
               </div>
               <h3 className="text-2xl font-black text-white tracking-tighter uppercase italic">
-                SURYA<span className="text-cyan-600">ARK</span>
+                NITHISH
               </h3>
             </div>
             <p className="text-gray-500 text-xs leading-relaxed uppercase tracking-widest font-light">
@@ -105,7 +105,7 @@ const Footer = () => {
           >
             <h4 className="text-[11px] font-mono font-bold text-cyan-500/80 tracking-[0.4em] uppercase">Control_Center</h4>
             <ul className="space-y-4">
-              {['About', 'Portfolio', 'Experience', 'Lab'].map((item) => (
+              {['About', 'Portfolio', 'Experience'].map((item) => (
                 <li key={item}>
                   <a href={`#${item.toLowerCase()}`} className="group flex items-center text-xs text-gray-500 hover:text-white transition-all tracking-widest">
                     <span className="w-0 group-hover:w-4 h-[1px] bg-cyan-500 mr-0 group-hover:mr-3 transition-all duration-300"></span>
@@ -172,15 +172,7 @@ const Footer = () => {
                 </motion.a>
               ))}
             </div>
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full py-4 bg-gradient-to-r from-cyan-600 to-blue-800 text-black font-black text-[10px] uppercase tracking-[0.5em] rounded-xl shadow-[0_10px_30px_rgba(6,182,212,0.2)] flex items-center justify-center space-x-3 group overflow-hidden relative"
-            >
-              <div className="absolute top-0 -left-[100%] w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:left-[100%] transition-all duration-1000" />
-              <span>Initiate Transmission</span>
-              <FiArrowUpRight className="text-lg group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </motion.button>
+
           </motion.div>
         </div>
 
@@ -202,7 +194,7 @@ const Footer = () => {
                 Local_Time: {systemTime}
              </div>
              <p className="text-[9px] text-gray-700 tracking-[0.2em] font-mono uppercase">
-                &copy; SURYA. ALL NEURAL LINKS RESERVED.
+                &copy; NITHISH JUDE J. ALL NEURAL LINKS RESERVED.
              </p>
           </div>
         </div>

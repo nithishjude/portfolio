@@ -4,31 +4,31 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const projectData = [
   {
-    image: "/projects/realtime_chat_mockup.jpg",
-    title: "Real-time Chat App",
-    description: "A futuristic real-time chat application dashboard featuring glowing message threads, active user lists, and high-performance WebSockets connection.",
-    tags: ["React", "FastAPI", "MongoDB", "Socket.io"],
+    image: "/projects/blood.jpeg",
+    title: "Real-Time Blood Donation",
+    description: "Emergency blood donation platform with real-time stock monitoring, 10 km radius location-based donor alerts, automated SMS via Twilio, and a reward system.",
+    tags: ["Node.js", "Twilio API", "Geolocation"],
     categories: ["ALL", "FULLSTACK", "REAL-TIME"],
     link: "#",
-    github: "#",
+    github: "https://github.com/nithishjude/Blood-Connect.git",
   },
   {
-    image: "/projects/food_delivery_mockup.jpg",
-    title: "Food Delivery Platform",
-    description: "A premium food delivery app interface showcasing delicious orders, responsive checkout flows, and real-time order tracking map updates.",
-    tags: ["React", "Node.js", "Express", "MongoDB"],
+    image: "/projects/provenance_pay.png",
+    title: "Provenance Pay",
+    description: "Real-time USDC royalty disbursement system on Arc Testnet using Circle infrastructure and MusicBrainz metadata. Features a Solidity smart contract for automated on-chain royalty splits.",
+    tags: ["Node.js", "Arc Testnet", "Solidity", "Circle"],
     categories: ["ALL", "FULLSTACK"],
-    link: "#",
-    github: "#",
+    link: "https://lepton-two.vercel.app/",
+    github: "https://github.com/nithishjude/Lepton.git",
   },
   {
-    image: "/projects/ecommerce_mockup.jpg",
-    title: "Premium E-Commerce",
-    description: "Luxury e-commerce store with sleek 3D asset cards, clean typography, detailed product viewing, and modern Stripe payment integration.",
-    tags: ["React", "Node.js", "Tailwind", "Stripe"],
-    categories: ["ALL", "FULLSTACK", "FRONTEND"],
-    link: "#",
-    github: "#",
+    image: "/projects/super.png",
+    title: "The Super App",
+    description: "Personalized React dashboard with user registration, weather, news, notes, countdown timers, and local storage-based movie recommendations.",
+    tags: ["React", "Node.js", "Local Storage", "APIs"],
+    categories: ["ALL", "FRONTEND"],
+    link: "https://superapp-tan-three.vercel.app",
+    github: "https://github.com/nithishjude/superapp.git",
   },
 ];
 
@@ -44,20 +44,14 @@ const Portfolio = () => {
     <section id="portfolio" className="bg-[#020202] py-24 px-6 md:px-12 lg:px-24 scroll-mt-24">
       {/* Header */}
       <div className="max-w-7xl mx-auto text-center mb-16">
-        <motion.p 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          className="text-blue-500 font-mono tracking-[0.4em] uppercase text-[10px] mb-4"
-        >
-          Project Showcase
-        </motion.p>
         <motion.h2 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           className="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter"
         >
-          Selected Works<span className="text-blue-500">.</span>
+          Project Showcase<span className="text-blue-500">.</span>
         </motion.h2>
+
         <div className="w-24 h-[1px] bg-blue-500/40 mx-auto"></div>
       </div>
 
@@ -106,7 +100,7 @@ const Portfolio = () => {
                 <img 
                   src={project.image} 
                   alt={project.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700 scale-105 group-hover:scale-110"
                   onError={(e) => {
                     e.target.src = "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=800";
                   }}

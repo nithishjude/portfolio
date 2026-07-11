@@ -71,7 +71,7 @@ const Contact = () => {
         const scale = Math.max(
           canvas.width / img.width,
           canvas.height / img.height
-        );
+        ) * 1.05;
         const x = (canvas.width - img.width * scale) / 2;
         const y = (canvas.height - img.height * scale) / 2;
         

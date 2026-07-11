@@ -4,8 +4,8 @@ import { FiSun, FiMoon, FiMenu, FiX } from 'react-icons/fi';
 const navLinks = [
   { name: 'Home', href: '#' },
   { name: 'About', href: '#about' },
-  { name: 'Services', href: '#services' },
-  { name: 'Portfolio', href: '#portfolio' },
+  { name: 'Experience', href: '#services' },
+  { name: 'Projects', href: '#portfolio' },
   { name: 'Contact', href: '#contact' }
 ];
 
@@ -28,7 +28,7 @@ export default function Navbar() {
       <nav
         className={`fixed top-0 left-0 w-full z-[200] transition-all duration-500 ease-in-out border-b ${
           isScrolled 
-            ? 'py-3 bg-black/80 backdrop-blur-lg border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)]' 
+            ? 'py-3 bg-[#020202] border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)]' 
             : 'py-6 bg-transparent border-transparent'
         }`}
       >
@@ -38,7 +38,7 @@ export default function Navbar() {
           <div className="flex items-center space-x-4 group cursor-pointer" onClick={() => (window.location.href = '#')}>
             <div className="flex flex-col">
                 <span className="text-white text-xl font-black tracking-[0.2em] uppercase leading-none">
-                    SURYA<span className="text-blue-500 animate-pulse ml-0.5">.</span>
+                    NITHISH<span className="text-blue-500 animate-pulse ml-0.5">.</span>
                 </span>
                 <span className="text-[8px] font-mono text-blue-400 mt-1 opacity-60 tracking-[0.3em] uppercase">SYSTEM ONLINE</span>
             </div>
@@ -68,21 +68,7 @@ export default function Navbar() {
               ))}
             </ul>
 
-            {/* Action Group */}
-            <div className="flex items-center space-x-6 border-l border-white/10 pl-10 h-6">
-                {/* Theme Toggle */}
-                <button 
-                  onClick={() => setIsDarkMode(!isDarkMode)}
-                  className="text-white/40 hover:text-white hover:scale-110 active:scale-95 transition-all duration-300 group"
-                >
-                  {isDarkMode ? <FiSun size={14} className="group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" /> : <FiMoon size={14} />}
-                </button>
 
-                {/* Hire Me Button */}
-                <button className="px-5 py-1.5 border border-white/20 text-white font-mono text-[9px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-500 rounded-sm">
-                    Hire Me
-                </button>
-            </div>
           </div>
 
           {/* Mobile Menu Button */}
