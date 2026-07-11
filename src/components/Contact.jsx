@@ -19,7 +19,8 @@ const Contact = () => {
   const [currentFrameIdx, setCurrentFrameIdx] = useState(0);
   const lastThresholdRef = useRef(0);
 
-  const frameCount = 160;
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const frameCount = isMobile ? 60 : 160;
   const imagesRef = useRef([]);
   const seqRef = useRef({ frame: 0 });
 
@@ -159,9 +160,12 @@ const Contact = () => {
       </AnimatePresence>
 
       {/* 2. Cinematic Canvas Layer (Z-0) */}
+      {/* Dark background shows instantly while images load */}
+      <div className="absolute inset-0 w-full h-full bg-[#020202] z-0" />
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        className="absolute inset-0 w-full h-full object-cover z-[1] transition-opacity duration-700"
+        style={{ opacity: loaded ? 1 : 0 }}
       />
 
       {/* 3. Aesthetic Overlays (Z-10) */}

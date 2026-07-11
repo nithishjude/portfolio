@@ -9,7 +9,7 @@ const projectData = [
     description: "Emergency blood donation platform with real-time stock monitoring, 10 km radius location-based donor alerts, automated SMS via Twilio, and a reward system.",
     tags: ["Node.js", "Twilio API", "Geolocation"],
     categories: ["ALL", "FULLSTACK", "REAL-TIME"],
-    link: "#",
+    link: "https://github.com/nithishjude/Blood-Connect",
     github: "https://github.com/nithishjude/Blood-Connect.git",
   },
   {

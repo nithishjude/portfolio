@@ -129,12 +129,16 @@ export default function Hero() {
 
     // --- 2. MAIN SCROLL CONTINUATION ---
     // User scroll takes over from whatever frame bootTl left off at, up to 239.
+    // Use shorter scroll on mobile for better UX
+    const isMobile = window.innerWidth < 768;
+    const scrollDistance = isMobile ? 1500 : 4000;
+
     const tlScroll = gsap.timeline({
         scrollTrigger: {
             trigger: containerRef.current,
             start: "top top",
-            end: "+=4000",
-            scrub: 1.5, // Butter smooth scroll with inertia
+            end: `+=${scrollDistance}`,
+            scrub: isMobile ? 1 : 1.5,
             pin: true,
             anticipatePin: 1
         }
@@ -215,7 +219,7 @@ export default function Hero() {
         {/* --- PORTFOLIO TEXT OVERLAY --- */}
         <AnimatePresence>
             {loaded && (
-                <div className="portfolio-ui absolute inset-0 z-[50] pointer-events-none flex flex-col md:flex-row justify-between items-center md:items-center px-8 md:px-[15%] lg:px-[18%] pt-32 pb-16 md:pt-0 pb-0">
+                <div className="portfolio-ui absolute inset-0 z-[50] pointer-events-none flex flex-col md:flex-row justify-center md:justify-between items-center px-6 md:px-[10%] lg:px-[15%] pt-24 md:pt-0">
                     
                     {/* LEFT SIDE: Name and Role */}
                     <div className="w-full md:w-[35%] flex flex-col items-center md:items-start text-center md:text-left">
@@ -226,7 +230,7 @@ export default function Hero() {
                                 transition={{ duration: 0.8, ease: "easeOut" }}
                                 className="mb-4"
                             >
-                                <h1 className="text-5xl md:text-6xl lg:text-7xl font-sans font-bold text-white tracking-[0.1em] uppercase leading-none" style={{ textShadow: "0 0 20px rgba(255,255,255,0.2)" }}>
+                                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-bold text-white tracking-[0.1em] uppercase leading-none" style={{ textShadow: "0 0 20px rgba(255,255,255,0.2)" }}>
                                     {titleText}
                                 </h1>
                             </motion.div>
@@ -248,7 +252,7 @@ export default function Hero() {
                     </div>
 
                     {/* RIGHT SIDE: Description and Button */}
-                    <div className="w-full md:w-[35%] flex flex-col items-center md:items-start text-center md:text-left mt-16 md:mt-0 md:pl-8">
+                    <div className="w-full md:w-[35%] flex flex-col items-center md:items-start text-center md:text-left mt-8 md:mt-0 md:pl-8">
                         {currentFrameIdx >= 120 && (
                             <motion.div 
                                 initial={{ opacity: 0, y: 30 }}

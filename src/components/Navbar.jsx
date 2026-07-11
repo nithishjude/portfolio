@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FiSun, FiMoon, FiMenu, FiX } from 'react-icons/fi';
+import { FiMenu, FiX } from 'react-icons/fi';
 
 const navLinks = [
   { name: 'Home', href: '#' },
@@ -13,7 +13,6 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('Home');
-  const [isDarkMode, setIsDarkMode] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -103,7 +102,7 @@ export default function Navbar() {
                   setActiveLink(link.name);
                   setIsMobileMenuOpen(false);
                 }}
-                className={`text-sm tracking-[0.4em] uppercase font-mono transition-all duration-300 ${
+                className={`text-base tracking-[0.4em] uppercase font-mono transition-all duration-300 py-2 ${
                   activeLink === link.name ? 'text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]' : 'text-white/40 hover:text-white'
                 }`}
               >
@@ -111,15 +110,10 @@ export default function Navbar() {
               </a>
             </li>
           ))}
-          <li className={`pt-6 transition-all duration-500 ${isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: `${navLinks.length * 100}ms` }}>
-            <button className="px-12 py-3 border border-white/20 text-white font-mono text-[10px] uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all rounded-sm">
-                Hire Me
-            </button>
-          </li>
+
         </ul>
         
-        {/* Mobile HUD label */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 font-mono text-[8px] text-gray-700 tracking-[0.5em] uppercase">Navigation_Module_Active</div>
+
       </div>
     </>
   );
