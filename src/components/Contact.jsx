@@ -222,7 +222,7 @@ const Contact = () => {
             className="relative z-50 w-full max-w-4xl px-6 pointer-events-auto"
           >
             <div className="text-center mb-8">
-              <h2 className="text-6xl md:text-9xl font-black text-white uppercase tracking-tighter leading-none">
+              <h2 className="text-5xl sm:text-6xl md:text-9xl font-black text-white uppercase tracking-tighter leading-none">
               COMM<span className="text-cyan-500 block sm:inline">.LINK</span>
             </h2>
               <div className="flex items-center justify-center space-x-2 text-cyan-500/60 font-mono text-[9px] tracking-[0.6em] uppercase">
