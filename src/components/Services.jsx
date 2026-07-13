@@ -97,13 +97,23 @@ export default function Services() {
                 <p className="text-gray-400 font-light text-sm leading-relaxed mb-6">
                   Completed an internship at <span className="text-white font-medium">Infosys SpringBoard</span>, delivering responsive interfaces, authentication, and dynamic polling interfaces for a governance dashboard.
                 </p>
-                <a
-                  href="https://github.com/Chamu-sist-27/team_a.git"
-                  target="_blank" rel="noopener noreferrer"
-                  className="w-full py-3 border border-white/10 text-white font-mono text-[10px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-300 rounded-sm flex items-center justify-center"
-                >
-                  View Case Study
-                </a>
+                <div className="flex flex-col gap-2">
+                  <a
+                    href="https://github.com/Chamu-sist-27/team_a.git"
+                    target="_blank" rel="noopener noreferrer"
+                    className="w-full py-3 border border-white/10 text-white font-mono text-[10px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-300 rounded-sm flex items-center justify-center"
+                  >
+                    View Case Study
+                  </a>
+                  <a
+                    href="https://drive.google.com/file/d/180yCsG1YaDhNHBJjf4SjNJA9ONa5F-YW/view?usp=sharing"
+                    target="_blank" rel="noopener noreferrer"
+                    className="w-full py-3 border border-blue-500/30 text-blue-400 font-mono text-[10px] uppercase tracking-[0.3em] hover:bg-blue-500 hover:text-white transition-all duration-300 rounded-sm flex items-center justify-center gap-2"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    View Certificate
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -128,13 +138,23 @@ export default function Services() {
                 <p className="text-gray-400 font-light text-sm leading-relaxed mb-6">
                   Built a <span className="text-white font-medium">Kubernetes Dashboard</span> for centralized cluster monitoring and real-time visualization of pods, nodes, and deployments using React.js, Prometheus & Grafana.
                 </p>
-                <a
-                  href="https://github.com/nithishjude/k8s-dashboard.git"
-                  target="_blank" rel="noopener noreferrer"
-                  className="w-full py-3 border border-white/10 text-white font-mono text-[10px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-300 rounded-sm flex items-center justify-center"
-                >
-                  View Case Study
-                </a>
+                <div className="flex flex-col gap-2">
+                  <a
+                    href="https://github.com/nithishjude/k8s-dashboard.git"
+                    target="_blank" rel="noopener noreferrer"
+                    className="w-full py-3 border border-white/10 text-white font-mono text-[10px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-300 rounded-sm flex items-center justify-center"
+                  >
+                    View Case Study
+                  </a>
+                  <a
+                    href="#"
+                    target="_blank" rel="noopener noreferrer"
+                    className="w-full py-3 border border-blue-500/30 text-blue-400 font-mono text-[10px] uppercase tracking-[0.3em] hover:bg-blue-500 hover:text-white transition-all duration-300 rounded-sm flex items-center justify-center gap-2"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    View Certificate
+                  </a>
+                </div>
               </div>
             </div>
           </div>
