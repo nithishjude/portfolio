@@ -1,14 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { 
-  FiLayout, 
-  FiServer, 
-  FiCloud, 
-  FiZap, 
-  FiBriefcase, 
-  FiArrowRight 
-} from "react-icons/fi";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,28 +10,7 @@ export default function Services() {
   const gridRef = useRef(null);
   const sidebarRef = useRef(null);
 
-  const mainServices = [
-    {
-      icon: <FiLayout size={24} />,
-      title: "Frontend Development",
-      p: "Create responsive, fast, and modern user interfaces using React, Tailwind CSS, and reusable components.",
-    },
-    {
-      icon: <FiServer size={24} />,
-      title: "Backend & API Design",
-      p: "Design and develop secure REST APIs and database integration using FastAPI, Node.js, and MongoDB.",
-    },
-    {
-      icon: <FiCloud size={24} />,
-      title: "Deployment & Hosting",
-      p: "Deploy applications on cloud platforms with domain setup and production-ready server configurations.",
-    },
-    {
-      icon: <FiZap size={24} />,
-      title: "Real-Time Solutions",
-      p: "Develop features like chat apps and live notifications using WebSockets and FastAPI.",
-    },
-  ];
+
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -57,12 +28,6 @@ export default function Services() {
         { opacity: 1, y: 0, duration: 0.4, ease: "none", stagger: 0.1 }
       );
 
-      // 2. Main Services Grid Stagger
-      tl.fromTo(".service-card", 
-        { opacity: 0, y: 40 }, 
-        { opacity: 1, y: 0, duration: 0.3, ease: "none", stagger: 0.1 },
-        "-=0.2"
-      );
 
       // 3. Experience Sidebar Slide
       tl.fromTo(sidebarRef.current, 
@@ -107,31 +72,9 @@ export default function Services() {
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-start relative z-10">
         
-        {/* Main Services Grid */}
-        <div ref={gridRef} className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-          {mainServices.map((service) => (
-            <div
-              key={service.title}
-              className="service-card group p-10 bg-[#0a0a0a] border border-white/[0.05] hover:border-blue-500/30 hover:shadow-[0_0_30px_rgba(59,130,246,0.05)] transition-all duration-300 rounded-sm cursor-default flex flex-col items-start"
-            >
-              <div className="mb-8 p-4 bg-white/5 border border-white/10 rounded-sm text-gray-300 group-hover:text-blue-400 group-hover:border-blue-500/20 transition-all">
-                {service.icon}
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3 tracking-tight uppercase">{service.title}</h3>
-              <p className="text-gray-500 font-light text-sm leading-relaxed mb-10">
-                {service.p}
-              </p>
-              <button className="flex items-center gap-3 text-[10px] font-mono uppercase tracking-[0.3em] text-gray-400 hover:text-white group/btn transition-colors">
-                <span>View Details</span> 
-                <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
-          ))}
-        </div>
-
-        {/* Featured Experience Card (Sidebar) */}
-        <div ref={sidebarRef} className="lg:col-span-4 h-full relative">
-          <div className="sticky top-32 space-y-6">
+        {/* Featured Experience Card */}
+        <div ref={sidebarRef} className="lg:col-span-12 h-full relative">
+          <div className="sticky top-32 grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Infosys Card */}
             <div className="p-8 bg-[#0c0c0c] border border-white/[0.08] rounded-sm group overflow-hidden relative">
               {/* HUD Corner Lines */}

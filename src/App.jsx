@@ -7,6 +7,7 @@ const About = lazy(() => import('./components/About'));
 const Services = lazy(() => import('./components/Services'));
 const Portfolio = lazy(() => import('./components/Portfolio'));
 const FrameScrollAnimation = lazy(() => import('./components/FrameScrollAnimation'));
+const TechnicalSkills = lazy(() => import('./components/TechnicalSkills'));
 const Contact = lazy(() => import('./components/Contact'));
 const Footer = lazy(() => import('./components/Footer'));
 
@@ -22,6 +23,7 @@ function App() {
         <About />
         <Portfolio />
         <Services />
+        <TechnicalSkills />
         <Contact />
         <Footer />
       </Suspense>

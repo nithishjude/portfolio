@@ -21,8 +21,8 @@ const FrameScrollAnimation = ({ frameCount = 240 }) => {
     restDelta: 0.001
   });
 
-  // 3. Transform Progress to Frame Index
-  const frameIndex = useTransform(smoothProgress, [0, 0.9], [0, frameCount - 1]);
+  // 3. Transform Progress to Frame Index — play ALL frames across full scroll
+  const frameIndex = useTransform(smoothProgress, [0, 1], [0, frameCount - 1]);
 
   // 4. Anti-Gravity 3D Effects
   // Floating motion
@@ -119,9 +119,9 @@ const FrameScrollAnimation = ({ frameCount = 240 }) => {
     };
   }, [loaded, frameIndex]);
 
-  // Final Scene Transitions
-  const opacity = useTransform(smoothProgress, [0.85, 0.95], [1, 0]);
-  const blur = useTransform(smoothProgress, [0.85, 0.95], ["blur(0px)", "blur(20px)"]);
+  // Final Scene Transitions — fade out only in the last ~8% of scroll
+  const opacity = useTransform(smoothProgress, [0.92, 0.99], [1, 0]);
+  const blur = useTransform(smoothProgress, [0.92, 0.99], ["blur(0px)", "blur(20px)"]);
 
   return (
     <div ref={containerRef} className="relative h-[600vh] bg-[#020202]">

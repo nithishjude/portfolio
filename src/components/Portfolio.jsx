@@ -9,7 +9,7 @@ const projectData = [
     description: "Emergency blood donation platform with real-time stock monitoring, 10 km radius location-based donor alerts, automated SMS via Twilio, and a reward system.",
     tags: ["Node.js", "Twilio API", "Geolocation"],
     categories: ["ALL", "FULLSTACK", "REAL-TIME"],
-    link: "https://github.com/nithishjude/Blood-Connect",
+    link: null,
     github: "https://github.com/nithishjude/Blood-Connect.git",
   },
   {
@@ -30,11 +30,38 @@ const projectData = [
     link: "https://superapp-tan-three.vercel.app",
     github: "https://github.com/nithishjude/superapp.git",
   },
+  {
+    image: "/projects/gamepayx.png",
+    title: "GamePayX",
+    description: "A decentralized game store powered by Avail Nexus SDK for true cross-chain ownership. Purchase in-game items on one blockchain and access them on ALL supported chains through Avail's Data Availability layer.",
+    tags: ["Avail Nexus SDK", "Blockchain", "React", "Cross-Chain"],
+    categories: ["ALL", "FULLSTACK", "BLOCKCHAIN"],
+    link: "https://gamepayx-j00ljy0dv-sanjay-s-projects-49dd4896.vercel.app/",
+    github: "https://github.com/nithishjude/gamepayx.git",
+  },
+  {
+    image: "/projects/rental car.png",
+    title: "Roadie Rental Biz",
+    description: "A modern, full-stack car rental web application designed to provide a seamless and intuitive car booking experience. Built with React, Supabase, and Tailwind CSS for elegant browsing, selecting, and booking cars online.",
+    tags: ["React", "Supabase", "Tailwind CSS"],
+    categories: ["ALL", "FULLSTACK", "FRONTEND"],
+    link: "https://car-rental-app-umber.vercel.app/",
+    github: "https://github.com/nithishjude/Car-Rental-App.git",
+  },
+  {
+    image: "/projects/online course.png",
+    title: "Online Course Registration",
+    description: "A full-featured online course registration system with secure login, course browsing, enrollment management, and an intuitive dashboard for both students and administrators.",
+    tags: ["React", "Node.js", "Authentication"],
+    categories: ["ALL", "FULLSTACK", "FRONTEND"],
+    link: "https://onlinecoursesystem.vercel.app/login",
+    github: "https://github.com/nithishjude/onlinecourse.git",
+  },
 ];
 
 const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState("ALL");
-  const categories = ["ALL", "FULLSTACK", "REAL-TIME", "FRONTEND"];
+  const categories = ["ALL", "FULLSTACK", "REAL-TIME", "FRONTEND", "BLOCKCHAIN"];
 
   const filteredProjects = projectData.filter(project =>
     project.categories.includes(activeCategory)
@@ -126,9 +153,11 @@ const Portfolio = () => {
                   <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label="Github Repository" className="p-3.5 bg-white/5 text-white rounded-xl hover:bg-blue-600 hover:text-white transition-all border border-white/10 hover:border-blue-500/50 shadow-lg">
                     <FiGithub size={18} />
                   </a>
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" aria-label="Live Demo" className="p-3.5 bg-white/5 text-white rounded-xl hover:bg-blue-600 hover:text-white transition-all border border-white/10 hover:border-blue-500/50 shadow-lg">
-                    <FiExternalLink size={18} />
-                  </a>
+                  {project.link && (
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" aria-label="Live Demo" className="p-3.5 bg-white/5 text-white rounded-xl hover:bg-blue-600 hover:text-white transition-all border border-white/10 hover:border-blue-500/50 shadow-lg">
+                      <FiExternalLink size={18} />
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>

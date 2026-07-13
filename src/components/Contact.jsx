@@ -20,14 +20,16 @@ const Contact = () => {
   const lastThresholdRef = useRef(0);
 
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const frameCount = isMobile ? 60 : 160;
+  const frameCount = isMobile ? 40 : 120;
   const imagesRef = useRef([]);
   const seqRef = useRef({ frame: 0 });
+  const rafRef = useRef(null);
 
   const currentFrame = (index) => `/image3/ezgif-frame-${(index + 1).toString().padStart(3, '0')}.jpg`;
 
-  // 1. Preload Sequence
+  // 1. Preload Sequence — show canvas after first 15% of frames ready
   useEffect(() => {
+    const readyThreshold = Math.ceil(frameCount * 0.15);
     let loadedCount = 0;
     for (let i = 0; i < frameCount; i++) {
         const img = new Image();
@@ -35,29 +37,29 @@ const Contact = () => {
         img.onload = () => {
             loadedCount++;
             setLoadingProgress(Math.floor((loadedCount / frameCount) * 100));
-            if (loadedCount === frameCount) setLoaded(true);
+            // Start showing canvas as soon as 15% of frames are ready
+            if (loadedCount === readyThreshold) setLoaded(true);
         };
         img.onerror = () => {
             loadedCount++;
-            if (loadedCount === frameCount) setLoaded(true);
+            if (loadedCount === readyThreshold) setLoaded(true);
         };
         imagesRef.current.push(img);
     }
   }, []);
 
-  // 2. GSAP Scroll and Render Logic (Hero Sync)
+  // 2. GSAP Scroll and Render Logic
   useEffect(() => {
     if (!loaded) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { willReadFrequently: false });
 
     // Responsive Canvas Size
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      render();
     };
 
     const render = () => {
@@ -66,6 +68,7 @@ const Contact = () => {
       
       let frameIdx = Math.round(seqRef.current.frame);
       if (frameIdx >= frameCount) frameIdx = frameCount - 1;
+      if (frameIdx < 0) frameIdx = 0;
 
       const img = imagesRef.current[frameIdx];
       if (img && img.complete && img.naturalWidth !== 0) {
@@ -75,30 +78,37 @@ const Contact = () => {
         ) * 1.05;
         const x = (canvas.width - img.width * scale) / 2;
         const y = (canvas.height - img.height * scale) / 2;
-        
         ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
       }
-      
-      // Optimize state updates to only fire when crossing threshold 120
-      const threshold = frameIdx >= 120 ? 120 : 0;
+
+      // Only update state when crossing threshold
+      const threshold = frameIdx >= Math.floor(frameCount * 0.75) ? 120 : 0;
       if (lastThresholdRef.current !== threshold) {
         lastThresholdRef.current = threshold;
         setCurrentFrameIdx(threshold);
       }
     };
 
+    // RAF loop — decouples render from GSAP ticker for smoothness
+    const loop = () => {
+      render();
+      rafRef.current = requestAnimationFrame(loop);
+    };
+
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
+    rafRef.current = requestAnimationFrame(loop);
 
-    // Scroll Animation - Sync with Hero logic
+    // Scroll Animation
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top top",
-        end: "+=4000",
-        scrub: 1.2, // Smoother scrub
+        end: "+=2500",
+        scrub: 2,
         pin: true,
-        anticipatePin: 1
+        anticipatePin: 1,
+        fastScrollEnd: true,
       }
     });
 
@@ -106,11 +116,11 @@ const Contact = () => {
       frame: frameCount - 1,
       snap: "frame",
       ease: "none",
-      onUpdate: render
     });
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
+      cancelAnimationFrame(rafRef.current);
       ScrollTrigger.getAll().filter(t => t.trigger === containerRef.current).forEach(t => t.kill());
     };
   }, [loaded]);
@@ -139,25 +149,15 @@ const Contact = () => {
       id="contactme"
       className="relative w-full h-screen bg-[#020202] overflow-hidden flex items-center justify-center font-mono select-none"
     >
-      {/* 1. Loading Module (Ultra-high Z) */}
-      <AnimatePresence>
-        {!loaded && (
-          <motion.div 
-            exit={{ opacity: 0 }}
-            className="absolute inset-0 flex flex-col items-center justify-center z-[100] bg-[#020202]"
-          >
-            <div className="text-cyan-400 font-mono text-[10px] uppercase tracking-[0.5em] mb-4 animate-pulse">
-              SYNCING_COMM_STREAM {loadingProgress}%
-            </div>
-            <div className="w-64 h-[2px] bg-cyan-950/30 overflow-hidden">
-               <motion.div 
-                 className="h-full bg-cyan-500" 
-                 style={{ width: `${loadingProgress}%` }}
-               />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* 1. Subtle corner loader — no longer blocks the section */}
+      {!loaded && (
+        <div className="absolute bottom-6 right-6 z-[100] flex items-center gap-3">
+          <div className="w-24 h-[1px] bg-white/10 overflow-hidden">
+            <div className="h-full bg-cyan-500 transition-all duration-300" style={{ width: `${loadingProgress}%` }} />
+          </div>
+          <span className="text-cyan-400/60 font-mono text-[8px] tracking-widest uppercase">{loadingProgress}%</span>
+        </div>
+      )}
 
       {/* 2. Cinematic Canvas Layer (Z-0) */}
       {/* Dark background shows instantly while images load */}
