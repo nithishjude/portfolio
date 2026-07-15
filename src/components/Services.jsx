@@ -99,7 +99,7 @@ export default function Services() {
                 </p>
                 <div className="flex flex-col gap-2">
                   <a
-                    href="https://github.com/Chamu-sist-27/team_a.git"
+                    href="https://github.com/nithishjude/civix-portal"
                     target="_blank" rel="noopener noreferrer"
                     className="w-full py-3 border border-white/10 text-white font-mono text-[10px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-300 rounded-sm flex items-center justify-center"
                   >
